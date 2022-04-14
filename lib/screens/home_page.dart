@@ -59,22 +59,47 @@ class _HomePageState extends State<HomePage> {
     return Container(
       margin: const EdgeInsets.only(left: 20, right: 20, top: 35),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Popular Company",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.bold
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                "Popular Company",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              Text(
+                "See All",
+                style: TextStyle(
+                    color: Color(0xffAD98C4),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+            ],
           ),
           Container(
-            height: 200,
+            height: 190,
             margin: const EdgeInsets.only(top: 10),
             child: ListView(
               shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
               children: [
-
+                buildPopularCompaniesListTile(
+                  "assets/ic_google.svg",
+                  "\$50K-\$90K", "Senior product Designer",
+                  "Google. California"
+                ),
+                buildPopularCompaniesListTile(
+                    "assets/ic_amazon.svg",
+                    "\$70K-\$100K", "Senior product Designer",
+                    "Amazone. California"
+                )
               ],
             ),
           )
@@ -83,8 +108,117 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildPopularCompniesListTile(String logo, String salary, String jobTitle, String loc) {
-
+  Widget buildPopularCompaniesListTile(String logo, String salary, String jobTitle, String loc) {
+    return Container(
+      width: 300,
+      margin: const EdgeInsets.only(right: 10),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xff7837C2),
+            Color(0xff3C1C61),
+          ],
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(10))
+      ),
+      child: Stack(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: 20, top: 20),
+                child: SvgPicture.asset(logo),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 12, left: 20),
+                child: Text(
+                  jobTitle,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 5, left: 20),
+                child: Text(
+                  loc,
+                  style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15,
+                  ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 15, left: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 10),
+                      decoration: const BoxDecoration(
+                        color: Color(0xffB392D8),
+                        borderRadius: BorderRadius.all(Radius.circular(12))
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Full Time",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.only(right: 10),
+                      decoration: const BoxDecoration(
+                          color: Color(0xffB392D8),
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Remote",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Positioned(
+            right: 1,
+            bottom: 1,
+            top: 1,
+            child: Container(
+              margin: const EdgeInsets.only(top: 30, right: 20),
+              child: Text(
+                salary,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 17
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Widget buildProfileComponent() {
