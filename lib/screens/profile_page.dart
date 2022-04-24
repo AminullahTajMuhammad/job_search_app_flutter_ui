@@ -309,7 +309,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ],
           ),
           Container(
-            margin: EdgeInsets.only(right: 10),
+            margin: const EdgeInsets.only(right: 10),
             child: SvgPicture.asset("assets/ic_more.svg"),
           )
         ],

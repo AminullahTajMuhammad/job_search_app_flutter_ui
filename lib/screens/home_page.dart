@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:job_search_app/screens/all_jobs_page.dart';
+import 'package:job_search_app/screens/job_details_page.dart';
 import 'package:job_search_app/screens/profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -467,57 +468,62 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildNewOpportunitiesListTile(String title, String company, String img) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 7, top: 7),
-      padding: const EdgeInsets.all(15),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(5)),
-        color: Color(0xffF8F5F5)
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              Image.asset(
-                img,
-                height: 35,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(left: 15),
-                    child: Text(
-                      title,
-                      style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => JobDetailsPage()));
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 7, top: 7),
+        padding: const EdgeInsets.all(15),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(5)),
+          color: Color(0xffF8F5F5)
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Image.asset(
+                  img,
+                  height: 35,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        title,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 15),
-                    child: Text(
-                      company,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
+                    Container(
+                      margin: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        company,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.only(right: 10),
-            child: SvgPicture.asset("assets/ic_more.svg"),
-          )
-        ],
+                  ],
+                ),
+              ],
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 10),
+              child: SvgPicture.asset("assets/ic_more.svg"),
+            )
+          ],
+        ),
       ),
     );
   }
