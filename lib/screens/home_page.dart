@@ -50,8 +50,119 @@ class _HomePageState extends State<HomePage> {
         buildProfileComponent(),
         buildSearch(),
         buildCategories(),
-        buildPopularCompanies()
+        buildPopularCompanies(),
+        buildNewOpportunity()
       ],
+    );
+  }
+
+  Widget buildNewOpportunity() {
+    return Container(
+      margin: const EdgeInsets.only(left: 20, right: 20, top: 35),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Text(
+                "New Opportunities",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              Text(
+                "See All",
+                style: TextStyle(
+                    color: Color(0xffAD98C4),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+            ],
+          ),
+          Container(
+            height: 190,
+            margin: const EdgeInsets.only(top: 10),
+            child: ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              children: [
+                buildNewOpportunitiesListTile(
+                  "Senior Developer",
+                  "Fanavaran, Taiwan",
+                  "assets/company_one.png"
+                ),
+                buildNewOpportunitiesListTile(
+                  "Flutter Developer",
+                  "Google, California",
+                  "assets/company_two.png",
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget buildNewOpportunitiesListTile(String title, String company, String img) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 7, top: 7),
+      padding: const EdgeInsets.all(15),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(5)),
+        color: Color(0xffF8F5F5)
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            children: [
+              Image.asset(
+                img,
+                height: 35,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(left: 15),
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(left: 15),
+                    child: Text(
+                      company,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Container(
+            margin: EdgeInsets.only(right: 10),
+            child: SvgPicture.asset("assets/ic_more.svg"),
+          )
+        ],
+      ),
     );
   }
 
